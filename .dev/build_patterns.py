@@ -39,7 +39,7 @@ PAGES = ["horseclub-pages"]
 PHONE = "01632 960 482"
 PHONE_2 = "01632 960 517"
 PHONE_HREF = "tel:+441632960482"
-EMAIL = "info@horseclub.com"
+EMAIL = "hello@yourdomain.com"
 VIDEO = "https://www.youtube.com/watch?v=zXRwZotweis"
 
 

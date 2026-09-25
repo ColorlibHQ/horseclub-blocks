@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"horseclub-contact-item horseclub-icon\u002d\u002dmail"} -->
-<p class="horseclub-contact-item horseclub-icon--mail"><strong><a href="mailto:info@horseclub.com">info@horseclub.com</a></strong><br>Send us your questions any time</p>
+<p class="horseclub-contact-item horseclub-icon--mail"><strong><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></strong><br>Send us your questions any time</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->

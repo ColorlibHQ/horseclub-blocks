@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Horseclub 1.0.0** is a Colorlib **WordPress block theme** (Full Site Editing)
+**Horseclub 1.0.1** is a Colorlib **WordPress block theme** (Full Site Editing)
 for riding schools, equestrian clubs and livery yards. 32 patterns, 14
 templates, 3 parts, 8 colour palettes × 5 type pairings, 8 starter pages built
 on activation, visitor dark mode, WooCommerce styling, and booking / contact /

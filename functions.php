@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'HORSECLUB_VERSION', '1.0.0' );
+define( 'HORSECLUB_VERSION', '1.0.1' );
 
 /**
  * Theme supports.

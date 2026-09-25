@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"horseclub-header__contact","textColor":"contrast","fontSize":"small"} -->
-<p class="horseclub-header__contact has-contrast-color has-text-color has-small-font-size"><a href="mailto:info@horseclub.com">info@horseclub.com</a></p>
+<p class="horseclub-header__contact has-contrast-color has-text-color has-small-font-size"><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
