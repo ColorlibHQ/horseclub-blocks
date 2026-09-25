@@ -1,0 +1,169 @@
+{
+ "slug": "horseclub",
+ "name": "Horseclub",
+ "tint": "#fdf6f6",
+ "accent": "#d90f3a",
+ "download": "https://updates.colorlib.com/download/theme/horseclub.zip",
+ "demo": "https://colorlibhub.com/horseclub-blocks/",
+ "elementor_demo": "https://colorlibhub.com/horseclub/",
+ "elementor_repo": "https://github.com/ColorlibHQ/horseclub",
+ "hero": {
+  "heading": "A riding school theme with lesson booking built in",
+  "text": "Horseclub is a free block theme for riding schools, equestrian clubs and livery yards. It ships the form a riding school’s site exists for — a lesson booking request that needs no plugin — with training courses, events, numbered membership plans, a reviews slider and a gallery, eight colour palettes and full site editing throughout.",
+  "image": "horseclub-block-theme-home.jpg"
+ },
+ "versions": {
+  "heading": "Two versions of Horseclub",
+  "lede": "The same design, built two ways. Both are free.",
+  "block": {
+   "kicker": "Recommended for new sites",
+   "title": "Block theme",
+   "text": "This download. Everything is edited in WordPress’s own Site Editor, with no plugins: the sections are patterns, eight colour palettes switch in Styles, and visitors get a dark-mode switch. The booking, contact and newsletter forms are part of the theme."
+  },
+  "elementor": {
+   "kicker": "For sites built with Elementor",
+   "title": "Elementor edition",
+   "text": "The same design built for Elementor. It needs the free Elementor plugin; its companion, with the Horseclub widgets, is built into the theme. The source is free on GitHub."
+  }
+ },
+ "blocks": [
+  {
+   "type": "section",
+   "heading": "Lesson booking without a plugin",
+   "text": "Riders’ reviews slide on the left, the booking form waits on the right: name, email, phone, a preferred date and a note about their riding. It validates on the server, carries a nonce and a honeypot, and works with JavaScript turned off. Requests go to the site’s admin address — or, with one filter, to your booking system.",
+   "image": "horseclub-block-theme-booking-form.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Courses and prices, as blocks",
+   "text": "Six training programmes with a photograph, a price and a line on what each course covers; six services in the same cards; four numbered membership plans. Each is a pattern: insert it, change the words and the photographs, and it stays exactly as editable as a paragraph.",
+   "image": "horseclub-block-theme-training.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Show days, clinics and open days",
+   "text": "The events page sets each date beside its photograph, alternating sides down the page, with its own button. On a phone every event reads photograph first.",
+   "image": "horseclub-block-theme-events.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Eight palettes, checked before release",
+   "text": "Rosette, the template’s own red and orange, then Saddle, Hunter, Navy, Burgundy and Meadow, and two dark palettes, Midnight and Stable. Every one is measured against WCAG AA before the theme is built, in light mode and in dark, and a palette that fails is not written.",
+   "image": "horseclub-block-theme-colour-palettes.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Dark mode the visitor controls",
+   "text": "The switch in the header is the visitor’s, separate from the palette you chose. It follows the reader’s system setting until they decide for themselves, and it lifts your palette rather than replacing it.",
+   "image": "horseclub-block-theme-dark-mode.jpg"
+  },
+  {
+   "type": "features",
+   "heading": "What you get"
+  },
+  {
+   "type": "section",
+   "heading": "It has a blog, too",
+   "text": "Competition results, horse-care advice, news from the yard. Archives, single posts, categories, tags, author pages, search and a 404 are all designed rather than inherited, with a sidebar of search, categories and recent posts.",
+   "image": "horseclub-block-theme-blog.jpg"
+  },
+  {
+   "type": "faqs",
+   "heading": "Questions"
+  }
+ ],
+ "features": [
+  {
+   "heading": "Booking, contact and newsletter forms",
+   "icon": "fa fa-envelope",
+   "text": "Built in, no plugin. Validated on the server, protected by a nonce and a honeypot, and they work with JavaScript turned off. One filter hands each submission to a booking system or a mailing list instead."
+  },
+  {
+   "heading": "Sections a riding school needs",
+   "icon": "fa fa-th-large",
+   "text": "Services, training courses with prices, an events list, four numbered membership plans, a riders’ reviews slider, an edge-to-edge gallery and a video introduction. Each is a pattern you insert and edit like any other block."
+  },
+  {
+   "heading": "Eight palettes, five type pairings",
+   "icon": "fa fa-paint-brush",
+   "text": "Every palette is measured against WCAG AA before the theme is built: text, links and button labels, in light mode and in dark."
+  },
+  {
+   "heading": "Dark mode",
+   "icon": "fa fa-moon-o",
+   "text": "A switch in the header for the visitor, separate from the palette you chose. It follows the reader’s system setting until they choose, and it lifts your palette rather than replacing it."
+  },
+  {
+   "heading": "Your form plugin, styled",
+   "icon": "fa fa-plug",
+   "text": "Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator and Ninja Forms take on the theme’s colours and spacing instead of looking like another website."
+  },
+  {
+   "heading": "WooCommerce ready",
+   "icon": "fa fa-shopping-cart",
+   "text": "Styled if you install WooCommerce to sell lessons, vouchers or tack, and it loads nothing at all if you do not."
+  },
+  {
+   "heading": "Motion that stays out of the way",
+   "icon": "fa fa-magic",
+   "text": "Sections rise into view as you scroll, reviews slide, the video plays in a popup and the gallery opens in a lightbox. Nothing on the first screen waits for it, and visitors who prefer reduced motion see no reveals."
+  },
+  {
+   "heading": "A site on activation",
+   "icon": "fa fa-files-o",
+   "text": "Activate it on a new site and it builds Home, About, Services, Training, Events, Pricing, Blog and Contact, with a menu to match. On a site that already has pages it leaves them alone."
+  },
+  {
+   "heading": "A contact page with a map",
+   "icon": "fa fa-map-marker",
+   "text": "Address, phone, email and opening hours with a contact form and an OpenStreetMap embed you point at your own yard."
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Do I need a plugin?",
+   "a": "No. The booking, contact and newsletter forms and dark mode are part of the theme. WooCommerce is styled if you add it, and is not required."
+  },
+  {
+   "q": "Where do booking requests go?",
+   "a": "To the site’s admin email address, sent with WordPress’s own mail function. If your host cannot send mail, any SMTP plugin fixes the forms along with everything else. To send requests to a booking system instead, hook the <code>horseclub_form_handlers</code> filter and return true; Horseclub then sends nothing of its own. <code>horseclub_form_email_to</code> changes the address."
+  },
+  {
+   "q": "Does the newsletter form connect to Mailchimp?",
+   "a": "Not by itself. Each sign-up arrives as an email to the admin address. The same <code>horseclub_form_handlers</code> filter is where a mailing-list provider hooks in."
+  },
+  {
+   "q": "Which form plugins does it style?",
+   "a": "Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator and Ninja Forms are mapped onto the theme’s own colours and spacing."
+  },
+  {
+   "q": "Can I change the colours?",
+   "a": "Eight palettes and five type pairings ship with the theme, each a one-click choice in the Site Editor under Styles. Every colour is a palette entry you can edit there too."
+  },
+  {
+   "q": "How do I change the map?",
+   "a": "The map on the contact page is a Custom HTML block holding an OpenStreetMap embed. On openstreetmap.org, find your yard, choose Share → HTML, and paste the new address into the block."
+  },
+  {
+   "q": "Can I turn dark mode off?",
+   "a": "Yes. Add <code>add_filter( 'horseclub_enable_dark_mode', '__return_false' );</code> to a child theme or a small plugin, and the switch in the header goes with it."
+  },
+  {
+   "q": "Can I turn the animations off?",
+   "a": "Yes. Add <code>add_filter( 'horseclub_enable_scroll_animations', '__return_false' );</code> and sections stop fading in; the reviews slider and the video popup keep working. Visitors whose system asks for reduced motion never see the reveals either way."
+  },
+  {
+   "q": "Block theme or Elementor edition?",
+   "a": "For a new site, the block theme: everything is edited in WordPress’s own Site Editor and nothing else needs installing. The Elementor edition is the same design for sites already built with Elementor; it needs the free Elementor plugin."
+  },
+  {
+   "q": "Is it translation ready?",
+   "a": "Yes. Every string is translatable and <code>languages/horseclub.pot</code> is included."
+  },
+  {
+   "q": "Does it check for updates?",
+   "a": "Yes, at most twice a day, because it is distributed outside the WordPress.org theme directory. It sends the theme’s version, the WordPress and PHP versions, the locale, whether the site is a multisite, and an identifier derived from the site’s address with the site’s own secret key, so it cannot be turned back into the address. The <code>horseclub_check_for_updates</code> filter switches it off."
+  }
+ ],
+ "details": "<table style=\"width:100%;border-collapse:collapse;\"><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Requires</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">WordPress 6.6 or newer</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">PHP</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">7.4 or newer</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Tested up to</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">WordPress 7.1</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Licence</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">GNU General Public License v2 or later</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Patterns</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">21 to insert, plus 11 the templates use</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Templates</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">14, plus 3 template parts</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Styles</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">8 colour palettes × 5 type pairings</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Fonts</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">Poppins and Playfair Display, self-hosted</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Icons</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">Tabler Icons (MIT), drawn in the palette’s colours</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Form plugins</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator, Ninja Forms</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee3e3;font-weight:600;white-space:nowrap;vertical-align:top;\">Build step</th><td style=\"padding:10px 0;border-bottom:1px solid #eee3e3;\">None — no npm, no SCSS</td></tr></table>"
+}
