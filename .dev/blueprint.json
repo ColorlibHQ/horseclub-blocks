@@ -1,0 +1,10 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "steps": [
+    { "step": "setSiteOptions", "options": { "blogname": "Horse Club", "blogdescription": "Riding school & livery yard", "permalink_structure": "/%postname%/" } },
+    { "step": "activateTheme", "themeFolderName": "horseclub" },
+    { "step": "login", "username": "admin", "password": "password" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/wp-content/themes/horseclub/.dev/demo/import.php';" }
+  ]
+}

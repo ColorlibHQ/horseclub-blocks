@@ -1,0 +1,37 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:pattern {"slug":"horseclub/hidden-single-banner"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)">
+	<!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|70","left":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-columns">
+		<!-- wp:column {"width":"66.66%","className":"horseclub-article"} -->
+		<div class="wp-block-column horseclub-article" style="flex-basis:66.66%">
+			<!-- wp:post-featured-image {"aspectRatio":"750/350"} /-->
+			<!-- wp:pattern {"slug":"horseclub/hidden-post-meta"} /-->
+			<!-- wp:post-content {"layout":{"type":"default"}} /-->
+			<!-- wp:post-terms {"term":"post_tag","prefix":"","className":"horseclub-post-tags"} /-->
+			<!-- wp:separator {"className":"is-style-wide"} -->
+			<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+			<!-- /wp:separator -->
+			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+			<div class="wp-block-group">
+				<!-- wp:post-navigation-link {"type":"previous","showTitle":true,"arrow":"arrow"} /-->
+				<!-- wp:post-navigation-link {"showTitle":true,"arrow":"arrow"} /-->
+			</div>
+			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"horseclub/hidden-comments"} /-->
+		</div>
+		<!-- /wp:column -->
+		<!-- wp:column {"width":"33.33%"} -->
+		<div class="wp-block-column" style="flex-basis:33.33%">
+			<!-- wp:template-part {"slug":"sidebar"} /-->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

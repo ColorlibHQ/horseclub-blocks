@@ -1,0 +1,1678 @@
+/*
+Theme Name: Horseclub
+Theme URI: https://colorlib.com/wp/themes/horseclub/
+Author: Colorlib
+Author URI: https://colorlib.com/
+Description: A block theme for riding schools, equestrian clubs and livery yards. Services, training courses, events, numbered pricing plans, a reviews slider beside a lesson booking form, contact and newsletter forms that need no plugin — eight colour palettes, five type pairings, visitor dark mode and WooCommerce support. Full site editing throughout.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Update URI: https://updates.colorlib.com/theme/horseclub.json
+Text Domain: horseclub
+Tags: blog, entertainment, full-site-editing, block-patterns, block-styles, template-editing, wide-blocks, accessibility-ready, translation-ready, custom-colors, custom-menu, custom-logo, featured-images, threaded-comments, one-column, two-columns, right-sidebar, rtl-language-support, sticky-post, theme-options
+
+Horseclub WordPress Theme, (C) 2026 Colorlib.
+Horseclub is distributed under the terms of the GNU GPL v2 or later.
+
+Horseclub bundles the following third-party resources:
+
+Poppins and Playfair Display
+License: SIL Open Font License 1.1, https://openfontlicense.org/
+Source: https://fontsource.org/
+
+Tabler Icons
+License: MIT, https://github.com/tabler/tabler-icons/blob/main/LICENSE
+Source: https://tabler.io/icons
+
+Photographs
+License: Pexels License and Pixabay Content License
+Source: Pexels and Pixabay; readme.txt lists each photograph's page
+*/
+
+/*
+ * A block theme styles itself from theme.json. What lives here is what
+ * theme.json cannot express: the component styles behind the block style
+ * variations registered in functions.php, the header's layout and sticky
+ * behaviour, the icons, the hover states and the few layout corrections a
+ * full-width design needs.
+ *
+ * This file is also the editor stylesheet (add_editor_style), so a card, a
+ * price table or an icon looks the same while it is being edited.
+ *
+ * Every colour is a palette variable, which is what lets all eight palettes,
+ * and dark mode, restyle every component.
+ */
+
+:root {
+	/* The header's height, which the hero subtracts from the screen. */
+	--horseclub-header-height: 7.5625rem;
+}
+
+@media (max-width: 959px) {
+	:root {
+		--horseclub-header-height: 4rem;
+	}
+}
+
+/* ==========================================================================
+   Screen reader text
+   ========================================================================== */
+
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--wp--preset--color--base);
+	clip-path: none;
+	color: var(--wp--preset--color--contrast);
+	display: block;
+	height: auto;
+	left: 6px;
+	padding: 15px 23px 14px;
+	top: 7px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* ==========================================================================
+   Layout rhythm
+
+   WordPress separates the top-level pieces of a page — header, main, footer —
+   and every full-width section inside a page's content with the root block
+   gap. On a design built from bands, that gap is a strip of bare page between
+   every pair of sections. Sections carry their own padding, so they meet edge
+   to edge instead.
+   ========================================================================== */
+
+.wp-site-blocks > * {
+	margin-block-start: 0;
+}
+
+.wp-block-post-content > .alignfull + .alignfull,
+.wp-block-post-content > .alignfull + .wp-block-gallery,
+.wp-block-post-content > .wp-block-gallery.alignfull + * {
+	margin-block-start: 0;
+}
+
+/*
+ * A page built from sections needs no padding of its own. A page of ordinary
+ * paragraphs still needs room to breathe, so the page templates pad their
+ * content only where it does not start or end with a full-width section.
+ */
+.horseclub-page-content:not(:has(> .alignfull:first-child)) {
+	padding-top: var(--wp--preset--spacing--80);
+}
+
+.horseclub-page-content:not(:has(> .alignfull:last-child)) {
+	padding-bottom: var(--wp--preset--spacing--80);
+}
+
+/* An <iframe> is inline, and auto margins do not centre an inline box. */
+.horseclub-map {
+	display: block;
+}
+
+a {
+	text-underline-offset: 0.18em;
+}
+
+/* ==========================================================================
+   Header
+
+   Two rows, as the template has it: the email and phone in gradient squares
+   either side of the logo, a hairline across the page, then the navigation
+   centred beneath. It stays at the top of the screen and gains a shadow once
+   the page scrolls (assets/js/interactions.js adds `is-scrolled`).
+   ========================================================================== */
+
+.wp-site-blocks > header.wp-block-template-part {
+	position: sticky;
+	top: var(--wp-admin--admin-bar--height, 0px);
+	z-index: 100;
+}
+
+/* Below 600px the admin bar scrolls away with the page. */
+@media (max-width: 600px) {
+	.wp-site-blocks > header.wp-block-template-part {
+		top: 0;
+	}
+}
+
+.horseclub-header {
+	position: relative;
+	/* A group with a background gets core's 1.25em of padding; the rows
+	   carry their own height. */
+	padding-top: 0;
+	padding-bottom: 0;
+	transition: box-shadow 0.4s ease;
+}
+
+.horseclub-header.is-scrolled {
+	box-shadow: var(--wp--preset--shadow--header);
+}
+
+.horseclub-header > .horseclub-header__top {
+	min-height: 4.125rem;
+	margin-block: 0;
+}
+
+/* The two gradient squares, flush with the top of the page. */
+.horseclub-header__square {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 4.625rem;
+	height: 4.125rem;
+	margin: 0;
+	background-image: var(--wp--preset--gradient--brand);
+	color: var(--wp--preset--color--overlay);
+	align-self: flex-start;
+}
+
+.horseclub-header__square::before {
+	content: "";
+	width: 1.125rem;
+	height: 1.125rem;
+	background-color: currentColor;
+	-webkit-mask: var(--horseclub-icon) center / contain no-repeat;
+	mask: var(--horseclub-icon) center / contain no-repeat;
+}
+
+.horseclub-header__side {
+	flex: 1 1 0;
+	min-width: 0;
+	align-self: stretch;
+}
+
+.horseclub-header__contact {
+	margin: 0;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.horseclub-header__contact a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-header__contact a:hover,
+.horseclub-header__contact a:focus-visible {
+	color: var(--wp--preset--color--primary);
+}
+
+.horseclub-header__brand {
+	flex: none;
+}
+
+/*
+ * The site title carries the club's mark: a gradient disc with a horse in it,
+ * drawn in CSS so it follows the palette. A site with its own logo uploaded
+ * shows the logo and drops the name, as the template's single logo image does.
+ */
+.horseclub-header .wp-block-site-title {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin: 0;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.horseclub-header .wp-block-site-title::before {
+	content: "";
+	flex: none;
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	background:
+		var(--horseclub-mark) center / 1.05rem no-repeat,
+		var(--wp--preset--gradient--brand);
+	--horseclub-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l-.85 8.507a1.357 1.357 0 0 0 1.35 1.493h.146a2 2 0 0 0 1.857 -1.257l.994 -2.486a2 2 0 0 1 1.857 -1.257h1.292a2 2 0 0 1 1.857 1.257l.994 2.486a2 2 0 0 0 1.857 1.257h.146a1.37 1.37 0 0 0 1.364 -1.494l-.864 -9.506h-8c0 -3 -3 -5 -6 -5l-3 6l2 2l3 -2'/%3E%3Cpath d='M22 14v-2a3 3 0 0 0 -3 -3'/%3E%3C/svg%3E");
+}
+
+.horseclub-header .wp-block-site-logo:has(img) ~ .wp-block-site-title {
+	display: none;
+}
+
+.horseclub-header .wp-block-site-title a {
+	text-decoration: none;
+}
+
+.horseclub-header > .wp-block-separator.horseclub-header__rule:not(.is-style-wide):not(.is-style-dots) {
+	width: auto;
+	margin-block: 0;
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--divider);
+	opacity: 1;
+}
+
+.horseclub-header > .horseclub-header__bar {
+	position: relative;
+	min-height: 3.375rem;
+	margin-block: 0;
+}
+
+/* The dark-mode switch sits at the right of the navigation row without
+   pushing the menu off centre. */
+.horseclub-header__bar > .wp-block-buttons {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.horseclub-header .wp-block-navigation__container {
+	gap: 0.25rem 1.125rem;
+}
+
+.horseclub-header .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+	transition: color 0.25s ease;
+}
+
+.horseclub-header .wp-block-navigation a.wp-block-navigation-item__content:hover,
+.horseclub-header .wp-block-navigation a.wp-block-navigation-item__content:focus-visible,
+.horseclub-header .wp-block-navigation .current-menu-item > a.wp-block-navigation-item__content {
+	color: var(--wp--preset--color--primary);
+}
+
+.horseclub-header .wp-block-navigation__submenu-container {
+	border: 0;
+	box-shadow: 0 0 30px rgb(127 137 161 / 0.25);
+	padding: 0.625rem;
+}
+
+/*
+ * Core switches the navigation to its menu button below 600px; the template
+ * collapses at 960px, where eight links stop fitting on one row. Below that the
+ * header is a single row: the mark on the left, the switch and the menu button
+ * on the right, as the template's phone layout.
+ */
+@media (max-width: 959px) {
+	.horseclub-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.horseclub-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+
+	.horseclub-header__side,
+	.horseclub-header > .horseclub-header__rule {
+		display: none !important;
+	}
+
+	.horseclub-header > .horseclub-header__top {
+		min-height: 4rem;
+		justify-content: flex-start;
+	}
+
+	.horseclub-header > .horseclub-header__bar {
+		position: absolute;
+		top: 0;
+		right: var(--wp--style--root--padding-right, 1.5rem);
+		height: 4rem;
+		min-height: 0;
+		gap: 0.25rem;
+	}
+
+	.horseclub-header__bar > .wp-block-buttons {
+		position: static;
+		transform: none;
+		order: -1;
+	}
+
+	.horseclub-header .wp-block-navigation__responsive-container-open {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.horseclub-header .wp-block-navigation__responsive-container-open svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	.horseclub-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+		font-size: 0.875rem;
+		padding: 0.35rem 0;
+	}
+}
+
+/* ==========================================================================
+   The dark-mode switch (inc/scheme.php). Here rather than in scheme.css so
+   the editor, which loads this file, draws it as the icon it is.
+   ========================================================================== */
+
+.wp-block-button.horseclub-scheme-toggle > .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	padding: 0;
+	width: 44px;
+	height: 44px;
+	min-width: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--wp--preset--color--contrast);
+}
+
+.wp-block-button.horseclub-scheme-toggle > .wp-block-button__link:hover,
+.wp-block-button.horseclub-scheme-toggle > .wp-block-button__link:focus-visible {
+	background: color-mix(in srgb, currentColor 10%, transparent);
+	color: var(--wp--preset--color--primary);
+}
+
+.wp-block-button.horseclub-scheme-toggle > .wp-block-button__link::before {
+	content: "";
+	width: 1.1rem;
+	height: 1.1rem;
+	flex: 0 0 auto;
+	background-color: currentColor;
+	/* A moon, and a sun in dark mode, masked so they take the button's colour. */
+	-webkit-mask: var(--horseclub-scheme-icon) center / contain no-repeat;
+	mask: var(--horseclub-scheme-icon) center / contain no-repeat;
+	--horseclub-scheme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z'/%3E%3C/svg%3E");
+}
+
+
+/* ==========================================================================
+   Icons
+
+   Tabler Icons, used as masks: the SVG supplies the shape and the element's
+   own colour fills it, so an icon takes whatever palette is active and turns
+   over in dark mode with no extra files. Each name sets --horseclub-icon, so
+   the class can sit on a paragraph block without masking the paragraph.
+   ========================================================================== */
+
+.horseclub-icon--send { --horseclub-icon: url("assets/icons/send.svg"); }
+.horseclub-icon--phone { --horseclub-icon: url("assets/icons/phone.svg"); }
+.horseclub-icon--mail { --horseclub-icon: url("assets/icons/mail.svg"); }
+.horseclub-icon--home { --horseclub-icon: url("assets/icons/home.svg"); }
+
+/* ==========================================================================
+   Type details
+   ========================================================================== */
+
+/* Eyebrow (block style: paragraph or heading › Eyebrow). */
+.is-style-horseclub-eyebrow {
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 300;
+	letter-spacing: 0.17em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.is-style-horseclub-eyebrow:not(.has-text-color) {
+	color: var(--wp--preset--color--primary);
+}
+
+/* The template's bold one-liner under a heading. */
+.horseclub-lede {
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast);
+}
+
+.horseclub-section-head {
+	margin-bottom: var(--wp--preset--spacing--60);
+}
+
+.horseclub-section-head > * {
+	margin-block: 0;
+}
+
+.horseclub-section-head > * + * {
+	margin-top: 0.625rem;
+}
+
+/* Accent bar (block style: separator › Accent bar). */
+.wp-block-separator.is-style-horseclub-bar:not(.is-style-wide):not(.is-style-dots) {
+	width: 30%;
+	max-width: 21rem;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--accent);
+	opacity: 1;
+}
+
+/* ==========================================================================
+   Buttons
+
+   The default button is the template's gradient in its readable shades (from
+   theme.json). On hover every button does what the template's do: the fill
+   drops away and an outline in the text colour is left.
+   ========================================================================== */
+
+.wp-block-button__link,
+.wp-element-button {
+	transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.wp-block-button:not(.horseclub-scheme-toggle):not(.horseclub-play) > .wp-block-button__link:hover,
+.wp-block-button:not(.horseclub-scheme-toggle):not(.horseclub-play) > .wp-block-button__link:focus-visible,
+.horseclub-form__actions .wp-element-button:hover,
+.horseclub-form__actions .wp-element-button:focus-visible {
+	background: transparent;
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+/* Dark (block style: button › Dark) — the template's "Get Started Now". */
+.wp-block-button.is-style-horseclub-dark > .wp-block-button__link {
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	font-weight: 500;
+}
+
+/* Outline (block style: button › Outline). */
+.wp-block-button.is-style-horseclub-outline > .wp-block-button__link {
+	background: transparent;
+	border-color: currentColor;
+	color: var(--wp--preset--color--contrast);
+}
+
+.horseclub-caps > .wp-block-button__link {
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+/* On a photograph, a filled button carries a pale hairline. The red fill on a
+   darkened photograph is a hue change more than a light one — 2.2:1 to 2.6:1
+   against the pixels around it — and the hairline is what makes its edge
+   measurable at 3:1 (WCAG 1.4.11). */
+.wp-block-cover .wp-block-button:not(.horseclub-scheme-toggle):not(.horseclub-play):not(.is-style-horseclub-outline) > .wp-block-button__link,
+.wp-block-cover .horseclub-form__actions .wp-element-button {
+	border-color: color-mix(in srgb, var(--wp--preset--color--overlay) 60%, var(--wp--preset--color--accent));
+}
+
+/* On a photograph, hovering leaves a white outline, as on the template's hero. */
+.wp-block-cover .wp-block-button:not(.horseclub-scheme-toggle):not(.horseclub-play) > .wp-block-button__link:hover,
+.wp-block-cover .wp-block-button:not(.horseclub-scheme-toggle):not(.horseclub-play) > .wp-block-button__link:focus-visible,
+.wp-block-cover .horseclub-form__actions .wp-element-button:hover,
+.wp-block-cover .horseclub-form__actions .wp-element-button:focus-visible {
+	border-color: var(--wp--preset--color--overlay);
+	color: var(--wp--preset--color--overlay);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+/* The template's hero fills the window below the header. */
+.wp-block-cover.horseclub-hero--fill {
+	min-height: max(30rem, calc(100vh - var(--horseclub-header-height))) !important;
+	min-height: max(30rem, calc(100svh - var(--horseclub-header-height))) !important;
+}
+
+.horseclub-hero .wp-block-cover__inner-container > .wp-block-group > * {
+	margin-block: 0;
+}
+
+.horseclub-hero .wp-block-cover__inner-container > .wp-block-group > .is-style-horseclub-eyebrow {
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: 0.21em;
+	margin-bottom: 0.9375rem;
+}
+
+.horseclub-hero .wp-block-cover__inner-container > .wp-block-group > .horseclub-hero__title {
+	margin-block: 1.25rem;
+	font-weight: 700;
+	line-height: 1.2;
+	text-shadow: 21px 21px 15px rgb(0 0 0 / 0.15);
+}
+
+/* The template's phone hero is a fixed 700px, header included. */
+@media (max-width: 767px) {
+	.wp-block-cover.horseclub-hero--fill {
+		min-height: 39rem !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.horseclub-hero__title br {
+		display: none;
+	}
+}
+
+/* ==========================================================================
+   Introduction with video
+   ========================================================================== */
+
+.horseclub-intro .wp-block-heading,
+.horseclub-about .wp-block-heading {
+	margin-block: 0.625rem !important;
+}
+
+.horseclub-intro .wp-block-buttons,
+.horseclub-about .wp-block-buttons {
+	margin-top: 1.5625rem !important;
+}
+
+@media (max-width: 413px) {
+	.horseclub-intro .wp-block-heading br,
+	.horseclub-about .wp-block-heading br {
+		display: none;
+	}
+}
+
+.horseclub-film {
+	width: 100%;
+	margin: 0;
+}
+
+/* The play button: a white ring with a triangle, as the template's play.png. */
+.wp-block-button.horseclub-play > .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.25rem;
+	height: 3.25rem;
+	padding: 0;
+	border: 2px solid var(--wp--preset--color--overlay);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--wp--preset--color--overlay);
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.wp-block-button.horseclub-play > .wp-block-button__link::before {
+	content: "";
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-left: 0.15rem;
+	background-color: currentColor;
+	-webkit-mask: url("assets/icons/player-play.svg") center / contain no-repeat;
+	mask: url("assets/icons/player-play.svg") center / contain no-repeat;
+}
+
+.wp-block-button.horseclub-play > .wp-block-button__link:hover,
+.wp-block-button.horseclub-play > .wp-block-button__link:focus-visible {
+	background-color: rgb(255 255 255 / 0.18);
+	transform: scale(1.08);
+}
+
+/* Video popup (assets/js/interactions.js). Without JavaScript the play
+   button is an ordinary link to the film. */
+.horseclub-video-dialog {
+	width: min(960px, 92vw);
+	padding: 0;
+	border: 0;
+	overflow: visible;
+	background: #000;
+}
+
+.horseclub-video-dialog::backdrop {
+	background: rgb(0 0 0 / 0.85);
+}
+
+.horseclub-video-dialog iframe {
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border: 0;
+}
+
+.horseclub-video-dialog__close {
+	position: absolute;
+	top: -3rem;
+	right: 0;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 0;
+	border-radius: 50%;
+	background: rgb(255 255 255 / 0.14);
+	color: #fff;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.horseclub-video-dialog__close:hover,
+.horseclub-video-dialog__close:focus-visible {
+	background: rgb(255 255 255 / 0.28);
+}
+
+/* ==========================================================================
+   Feature band
+   ========================================================================== */
+
+.horseclub-feature > * {
+	margin-block: 0;
+}
+
+.horseclub-feature > * + * {
+	margin-top: 1.25rem;
+}
+
+.horseclub-feature .wp-block-heading {
+	transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   About: two photographs at different heights
+   ========================================================================== */
+
+.horseclub-about-photos {
+	margin: 0;
+}
+
+.horseclub-about-photos .wp-block-image,
+.horseclub-about-photos .wp-block-image img {
+	width: 100%;
+	margin: 0;
+}
+
+.horseclub-about-photos .wp-block-column.horseclub-about-photos__low {
+	padding-top: 18.5%;
+}
+
+/* The template indents the words 100px from the photographs. Border-box, so
+   the indent comes out of the column rather than pushing it wider. */
+.horseclub-about-text {
+	box-sizing: border-box;
+}
+
+@media (min-width: 1025px) {
+	.horseclub-about-text {
+		padding-left: 6.25rem;
+	}
+}
+
+@media (min-width: 782px) and (max-width: 1024px) {
+	.horseclub-about-text {
+		padding-left: var(--wp--preset--spacing--40);
+	}
+}
+
+/* ==========================================================================
+   Price card  (block style: group › Price card)
+   ========================================================================== */
+
+.is-style-horseclub-price {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 2.5rem 1.25rem;
+	border-radius: 5px;
+	background-color: var(--wp--preset--color--base);
+	text-align: center;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.is-style-horseclub-price > * {
+	margin-block: 0;
+}
+
+.horseclub-price__no {
+	display: grid;
+	place-items: center;
+	box-sizing: border-box;
+	width: 8.75rem;
+	height: 8.75rem;
+	margin: 0 auto !important;
+	border: 1.875rem solid var(--wp--preset--color--surface);
+	border-radius: 50%;
+	background-image: var(--wp--preset--gradient--brand);
+	background-clip: padding-box;
+	color: var(--wp--preset--color--overlay);
+	font-size: var(--wp--preset--font-size--heading);
+	font-weight: 300;
+	line-height: 1;
+	transition: border-color 0.3s ease;
+}
+
+.is-style-horseclub-price .wp-block-heading {
+	margin-top: 1.25rem;
+}
+
+.horseclub-price__who {
+	margin-top: 0.25rem !important;
+}
+
+.is-style-horseclub-price .is-style-horseclub-lines {
+	margin-top: 1.875rem;
+	margin-bottom: 1.875rem;
+}
+
+.horseclub-price__amount {
+	/* Prices line up across the row whatever the lists above them hold. */
+	margin-top: auto !important;
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--heading);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.horseclub-price__link {
+	margin-top: 2.5rem !important;
+}
+
+.horseclub-price__link a {
+	display: inline-block;
+	padding: 0.625rem 3.125rem;
+	border-radius: 5px;
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	font-weight: 600;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.horseclub-price__link a:hover,
+.horseclub-price__link a:focus-visible {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Hovered, the card turns into a photograph and its words turn white. The
+   template lays the words straight onto the picture; a dark wash under them
+   keeps them readable. */
+.is-style-horseclub-price:hover,
+.is-style-horseclub-price:focus-within {
+	background:
+		linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.55)),
+		url("assets/images/price-hover.webp") center / cover;
+	color: var(--wp--preset--color--overlay);
+}
+
+.is-style-horseclub-price:hover :is(.wp-block-heading, .horseclub-price__amount, li),
+.is-style-horseclub-price:focus-within :is(.wp-block-heading, .horseclub-price__amount, li) {
+	color: var(--wp--preset--color--overlay);
+}
+
+.is-style-horseclub-price:hover .horseclub-price__no,
+.is-style-horseclub-price:focus-within .horseclub-price__no {
+	border-color: var(--wp--preset--color--overlay);
+}
+
+.is-style-horseclub-price:hover .is-style-horseclub-lines > li,
+.is-style-horseclub-price:focus-within .is-style-horseclub-lines > li {
+	border-color: rgb(255 255 255 / 0.3);
+}
+
+/* The template's pricing cards stack two by two on a tablet. */
+@media (min-width: 600px) and (max-width: 1024px) {
+	.horseclub-prices {
+		flex-wrap: wrap !important;
+	}
+
+	.horseclub-prices > .wp-block-column {
+		flex-basis: calc(50% - var(--wp--preset--spacing--40)) !important;
+	}
+}
+
+/* ==========================================================================
+   Ruled list  (block style: list › Ruled lines)
+   ========================================================================== */
+
+.is-style-horseclub-lines {
+	list-style: none;
+	padding-left: 0;
+}
+
+.is-style-horseclub-lines > li {
+	margin: 0;
+	padding: 0.625rem 0;
+	border-top: 1px solid var(--wp--preset--color--divider);
+}
+
+.is-style-horseclub-lines > li:last-child {
+	border-bottom: 1px solid var(--wp--preset--color--divider);
+}
+
+/* ==========================================================================
+   Booking band: reviews slider and the booking box
+   ========================================================================== */
+
+.horseclub-booking__box {
+	padding: 1.875rem;
+	border: 1px solid rgb(255 255 255 / 0.4);
+}
+
+.horseclub-booking__box > .wp-block-heading {
+	margin-bottom: 1.25rem;
+}
+
+/* Without JavaScript the slides scroll sideways; with it, dots drive them. */
+.horseclub-slider {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
+}
+
+.horseclub-slider::-webkit-scrollbar {
+	display: none;
+}
+
+.horseclub-slider > .horseclub-slide {
+	flex: 0 0 100%;
+	margin: 0 !important;
+	scroll-snap-align: start;
+}
+
+.horseclub-quote > * {
+	margin-block: 0;
+}
+
+.horseclub-quote > * + * {
+	margin-top: 1rem;
+}
+
+.horseclub-quote__name {
+	margin: 0;
+	font-weight: 300;
+}
+
+.horseclub-quote__role {
+	font-weight: 500;
+	letter-spacing: 0.04em;
+}
+
+/* Star ratings: five masks, the unlit ones faint. */
+.horseclub-stars {
+	--horseclub-stars: 5;
+	position: relative;
+	width: 5.5rem;
+	height: 1rem;
+	margin: 0;
+	background: rgb(255 255 255 / 0.35);
+	-webkit-mask: url("assets/icons/star.svg") left center / 1.1rem 1rem repeat-x;
+	mask: url("assets/icons/star.svg") left center / 1.1rem 1rem repeat-x;
+}
+
+.horseclub-stars::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: calc(var(--horseclub-stars) * 1.1rem);
+	background: var(--wp--preset--color--accent-warm);
+}
+
+.horseclub-stars--4 {
+	--horseclub-stars: 4;
+}
+
+.horseclub-slider__dots {
+	display: flex;
+	gap: 0.625rem;
+	margin-top: 1.5rem;
+}
+
+.horseclub-slider__dot {
+	width: 0.75rem;
+	height: 0.75rem;
+	padding: 0;
+	border: 0;
+	background: rgb(255 255 255 / 0.45);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.horseclub-slider__dot[aria-current="true"] {
+	background: var(--wp--preset--color--accent);
+}
+
+.horseclub-slider__dot:focus-visible {
+	outline: 2px solid var(--wp--preset--color--overlay);
+	outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Latest news
+   ========================================================================== */
+
+.horseclub-news .wp-block-post > * {
+	margin-block: 0;
+}
+
+.horseclub-news .wp-block-post-terms {
+	margin-top: 1.25rem;
+}
+
+.horseclub-news .wp-block-post-title {
+	margin-top: 1.25rem;
+}
+
+.horseclub-news .wp-block-post-excerpt {
+	margin-top: 1.25rem;
+}
+
+.horseclub-news .wp-block-post-excerpt__excerpt {
+	margin: 0;
+}
+
+.horseclub-news .wp-block-post-date {
+	margin-top: 1rem;
+}
+
+/* Category chips: the template's red tags. */
+.horseclub-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem;
+}
+
+.horseclub-chips .wp-block-post-terms__separator {
+	display: none;
+}
+
+.horseclub-chips a {
+	padding: 0.1rem 0.625rem;
+	border: 1px solid transparent;
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	font-size: var(--wp--preset--font-size--small);
+	text-decoration: none;
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.horseclub-chips a:hover,
+.horseclub-chips a:focus-visible {
+	background-color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--contrast);
+}
+
+/* ==========================================================================
+   Gallery: six photographs, edge to edge
+   ========================================================================== */
+
+.wp-block-gallery.horseclub-gallery {
+	gap: 0 !important;
+	margin-block: 0;
+}
+
+.wp-block-gallery.horseclub-gallery > .wp-block-image {
+	position: relative;
+	margin: 0 !important;
+}
+
+.wp-block-gallery.horseclub-gallery > .wp-block-image img {
+	aspect-ratio: 4 / 5;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.wp-block-gallery.horseclub-gallery > .wp-block-image::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: var(--wp--preset--gradient--brand);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease;
+}
+
+.wp-block-gallery.horseclub-gallery > .wp-block-image:hover::after {
+	opacity: 0.8;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+	.wp-block-gallery.horseclub-gallery > .wp-block-image {
+		width: calc(100% / 3) !important;
+	}
+}
+
+/* ==========================================================================
+   Photo card  (block style: group › Photo card) — services and training
+   ========================================================================== */
+
+.is-style-horseclub-card {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow 0.3s ease;
+}
+
+.is-style-horseclub-card > * {
+	margin-block: 0 !important;
+}
+
+.is-style-horseclub-card .wp-block-image,
+.is-style-horseclub-card .wp-block-image img {
+	width: 100%;
+	margin: 0;
+}
+
+.is-style-horseclub-card:hover,
+.is-style-horseclub-card:focus-within {
+	box-shadow: var(--wp--preset--shadow--card);
+}
+
+.horseclub-card__body {
+	flex: 1 1 auto;
+	padding: 1.875rem;
+}
+
+.horseclub-card__body > * {
+	margin-block: 0;
+}
+
+.horseclub-card__body > .wp-block-heading {
+	padding-block: 1.25rem;
+}
+
+.horseclub-card__body--tight {
+	padding: 1.25rem;
+}
+
+.horseclub-card__body--tight > .horseclub-card__head {
+	margin-bottom: 0.5rem;
+}
+
+.horseclub-card__head > * {
+	margin: 0;
+}
+
+.horseclub-card__price {
+	flex: none;
+	color: var(--wp--preset--color--primary);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.horseclub-card__media {
+	position: relative;
+}
+
+.horseclub-badge {
+	position: absolute;
+	width: max-content;
+	max-width: calc(100% - 2.5rem);
+	left: 1.25rem;
+	bottom: 1.25rem;
+	margin: 0 !important;
+	padding: 0.5rem 0.9375rem;
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.6;
+}
+
+/* ==========================================================================
+   Events: photograph and words on alternating sides
+   ========================================================================== */
+
+.horseclub-event .wp-block-image,
+.horseclub-event .wp-block-image img {
+	width: 100%;
+	margin: 0;
+}
+
+.horseclub-event__meta {
+	margin-top: 0.625rem !important;
+}
+
+.horseclub-event__meta strong {
+	font-weight: 400;
+	color: var(--wp--preset--color--contrast);
+}
+
+/* On a phone, every event reads photograph first. */
+@media (max-width: 781px) {
+	.horseclub-event > .horseclub-event__photo {
+		order: -1;
+	}
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+
+.horseclub-contact-item {
+	position: relative;
+	min-height: 2rem;
+	padding-left: 3.75rem;
+}
+
+.horseclub-contact-item::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1.875rem;
+	height: 1.875rem;
+	background-color: var(--wp--preset--color--primary);
+	-webkit-mask: var(--horseclub-icon) center / contain no-repeat;
+	mask: var(--horseclub-icon) center / contain no-repeat;
+}
+
+.horseclub-contact-item strong {
+	display: inline-block;
+	margin-bottom: 0.3rem;
+	color: var(--wp--preset--color--contrast);
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.horseclub-contact-item a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-contact-item a:hover,
+.horseclub-contact-item a:focus-visible {
+	color: var(--wp--preset--color--primary);
+}
+
+/* ==========================================================================
+   Page banner
+   ========================================================================== */
+
+.horseclub-banner .wp-block-cover__inner-container > .wp-block-group > * {
+	margin-block: 0;
+}
+
+.horseclub-banner .wp-block-post-title,
+.horseclub-banner .wp-block-query-title,
+.horseclub-banner h1 {
+	font-size: var(--wp--preset--font-size--display);
+	font-weight: 600;
+}
+
+.horseclub-breadcrumb {
+	margin-top: 0.625rem !important;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.horseclub-breadcrumb > * {
+	margin: 0;
+	font-size: inherit !important;
+	font-weight: 300 !important;
+	font-family: inherit !important;
+	line-height: 1.6 !important;
+}
+
+.horseclub-breadcrumb__home {
+	display: inline-flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.horseclub-breadcrumb__home::after {
+	content: "";
+	width: 1rem;
+	height: 1rem;
+	background-color: currentColor;
+	-webkit-mask: url("assets/icons/arrow-narrow-right.svg") center / contain no-repeat;
+	mask: url("assets/icons/arrow-narrow-right.svg") center / contain no-repeat;
+}
+
+.horseclub-breadcrumb a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-breadcrumb a:hover,
+.horseclub-breadcrumb a:focus-visible {
+	text-decoration: underline;
+}
+
+/* ==========================================================================
+   Blog: the post list, the single post and the sidebar
+   ========================================================================== */
+
+.horseclub-posts .wp-block-post > * {
+	margin-block: 0;
+}
+
+.horseclub-posts .wp-block-post-terms {
+	margin-top: 1.875rem;
+}
+
+.horseclub-posts .wp-block-post-title {
+	margin-top: 1.25rem;
+	font-size: var(--wp--preset--font-size--heading);
+}
+
+.horseclub-posts .wp-block-post-excerpt {
+	margin-top: 1.25rem;
+}
+
+.horseclub-posts .wp-block-post-excerpt__excerpt {
+	margin: 0;
+}
+
+.horseclub-posts .horseclub-post__meta {
+	margin-top: 1rem;
+}
+
+.horseclub-post__meta {
+	color: var(--wp--preset--color--muted);
+}
+
+.horseclub-post__meta a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-post__meta a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.wp-block-post-terms a {
+	text-decoration: none;
+}
+
+/* Categories in a list or over a post take the words' colour, as the
+   template's plain "Art, Technology, Fashion" line does. */
+.horseclub-posts .wp-block-post-terms a,
+.horseclub-post__meta .wp-block-post-terms a {
+	color: inherit;
+}
+
+.horseclub-posts .wp-block-post-terms a:hover,
+.horseclub-post__meta .wp-block-post-terms a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* The single post's own rhythm: photograph, meta line, then the words. */
+.horseclub-article > .wp-block-post-featured-image {
+	margin-bottom: 0;
+}
+
+.horseclub-article > .horseclub-post__meta {
+	margin-top: 1.5rem;
+}
+
+.horseclub-post-tags a {
+	text-decoration: none;
+}
+
+/* A date and a comment count each carry a small icon. */
+.horseclub-post__meta .wp-block-post-date,
+.horseclub-comments-count {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.horseclub-post__meta .wp-block-post-date::before,
+.horseclub-comments-count::before {
+	content: "";
+	flex: none;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask: url("assets/icons/calendar.svg") center / contain no-repeat;
+	mask: url("assets/icons/calendar.svg") center / contain no-repeat;
+}
+
+.horseclub-comments-count::before {
+	-webkit-mask-image: url("assets/icons/message.svg");
+	mask-image: url("assets/icons/message.svg");
+}
+
+.wp-block-query-pagination {
+	gap: 0.5rem;
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+.wp-block-query-pagination a,
+.wp-block-query-pagination .current {
+	display: inline-grid;
+	place-items: center;
+	min-width: 2.5rem;
+	height: 2.5rem;
+	padding: 0 0.6rem;
+	box-sizing: border-box;
+	border: 1px solid var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.wp-block-query-pagination .current,
+.wp-block-query-pagination a:hover {
+	background-color: var(--wp--preset--color--primary);
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+/* The single post's quotations, as the template's: a pale panel with a rule. */
+.wp-block-quote {
+	margin-inline: 0;
+}
+
+.wp-block-quote p {
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+.wp-block-quote cite {
+	display: block;
+	margin-top: 0.75rem;
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	font-style: normal;
+	font-weight: 500;
+}
+
+.wp-block-post-navigation-link a {
+	color: var(--wp--preset--color--contrast);
+	font-weight: 600;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.wp-block-post-navigation-link a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Bordered box (block style: group › Bordered box) — the sidebar's widgets. */
+.is-style-horseclub-box {
+	padding: 2.5rem 1.875rem;
+	border: 1px solid var(--wp--preset--color--divider);
+}
+
+.is-style-horseclub-box > * {
+	margin-block: 0;
+}
+
+.is-style-horseclub-box > * + * {
+	margin-top: 1.875rem;
+}
+
+.is-style-horseclub-box ul {
+	margin-bottom: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Categories and archives with counts: name left, count right, ruled. */
+.horseclub-counts li {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.625rem 1.25rem;
+	border-bottom: 1px solid var(--wp--preset--color--divider);
+	transition: border-color 0.3s ease;
+}
+
+.horseclub-counts li:hover {
+	border-color: var(--wp--preset--color--primary);
+}
+
+.horseclub-counts a {
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.horseclub-counts a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.horseclub-recent li {
+	display: flow-root;
+	margin-bottom: 1.25rem;
+}
+
+.horseclub-recent li:last-child {
+	margin-bottom: 0;
+}
+
+.horseclub-recent .wp-block-latest-posts__featured-image.alignleft {
+	margin: 0 1.25rem 0 0;
+}
+
+.horseclub-recent .wp-block-latest-posts__featured-image img {
+	width: 4.6875rem;
+	height: 4.6875rem;
+	object-fit: cover;
+}
+
+.horseclub-recent .wp-block-latest-posts__post-title {
+	display: block;
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	line-height: 1.5;
+	text-decoration: none;
+}
+
+.horseclub-recent .wp-block-latest-posts__post-title:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.horseclub-recent .wp-block-latest-posts__post-date {
+	margin-top: 0.5rem;
+	color: var(--wp--preset--color--muted);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.wp-block-tag-cloud.horseclub-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.wp-block-tag-cloud.horseclub-tags a,
+.wp-block-tag-cloud a {
+	margin: 0;
+	padding: 0.4rem 0.625rem;
+	border: 1px solid var(--wp--preset--color--divider);
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	font-weight: 300;
+	text-decoration: none;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wp-block-tag-cloud a:hover,
+.wp-block-tag-cloud a:focus-visible {
+	background-color: var(--wp--preset--color--primary);
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+.horseclub-sidebar .wp-block-search__inside-wrapper {
+	border: 0;
+	padding: 0;
+	background-color: var(--wp--preset--color--surface);
+}
+
+.horseclub-sidebar .wp-block-search__input {
+	border: 0;
+	background: transparent;
+}
+
+.horseclub-sidebar .wp-block-search__button {
+	margin: 0;
+	padding: 0.5rem 0.9rem;
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	border: 0;
+}
+
+.horseclub-sidebar .wp-block-search__button:hover,
+.horseclub-sidebar .wp-block-search__button:focus-visible {
+	background: var(--wp--preset--color--primary-deep);
+	color: var(--wp--preset--color--on-primary);
+}
+
+/* Comments. */
+.horseclub-comments .wp-block-post-comments-form {
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+.horseclub-comments .wp-block-comments-title {
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.horseclub-comments .wp-block-comment-template {
+	padding-left: 0;
+}
+
+.horseclub-comments .wp-block-comment-template ol {
+	padding-left: var(--wp--preset--spacing--50);
+}
+
+.horseclub-comments .wp-block-comment-author-name {
+	color: var(--wp--preset--color--contrast);
+	font-weight: 600;
+}
+
+.horseclub-comments .wp-block-comment-author-name a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-comments .wp-block-comment-date a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.horseclub-comments .wp-block-avatar img {
+	border-radius: 0;
+}
+
+.horseclub-reply a {
+	display: inline-block;
+	padding: 0.4rem 1.875rem;
+	border: 1px solid var(--wp--preset--color--contrast);
+	background-color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	font-weight: 500;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.horseclub-reply a:hover,
+.horseclub-reply a:focus-visible {
+	background-color: transparent;
+	color: var(--wp--preset--color--contrast);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.horseclub-footer .horseclub-footer__title {
+	margin-bottom: 1.875rem;
+}
+
+.horseclub-footer__numbers {
+	color: var(--wp--preset--color--primary);
+	font-size: var(--wp--preset--font-size--x-large);
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.horseclub-footer__numbers a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.horseclub-footer__numbers a:hover,
+.horseclub-footer__numbers a:focus-visible {
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.horseclub-footer .horseclub-footer__bottom {
+	margin-top: 2.5rem;
+}
+
+.horseclub-footer__legal {
+	margin: 0;
+}
+
+.horseclub-footer__legal a {
+	color: var(--wp--preset--color--primary);
+	text-decoration: none;
+}
+
+/* Squares (block style: social links › Squares): pale tiles that fill with
+   the brand colour on hover, as the template's footer. */
+.wp-block-social-links.is-style-horseclub-squares {
+	gap: 0.25rem;
+}
+
+.wp-block-social-links.is-style-horseclub-squares .wp-social-link.wp-block-social-link {
+	border-radius: 0;
+	background-color: var(--wp--preset--color--surface);
+	color: var(--wp--preset--color--contrast);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wp-block-social-links.is-style-horseclub-squares .wp-social-link.wp-block-social-link:hover,
+.wp-block-social-links.is-style-horseclub-squares .wp-social-link.wp-block-social-link:focus-within {
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	transform: none;
+}
+
+.wp-block-social-links.is-style-horseclub-squares .wp-social-link a {
+	padding: 0.75rem 0.9rem;
+	color: inherit;
+}
+
+.wp-block-social-links.is-style-horseclub-squares .wp-social-link svg {
+	width: 1rem;
+	height: 1rem;
+}
+
+/* ==========================================================================
+   Scroll reveals (assets/js/interactions.js)
+
+   Hidden only once the script has run and only for what is below the first
+   screen, so a visitor without JavaScript, a crawler, or anyone looking at the
+   top of the page sees content immediately.
+   ========================================================================== */
+
+.horseclub-motion .horseclub-reveal {
+	opacity: 0;
+	transform: translate3d(0, 28px, 0);
+	transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+	transition-delay: var(--horseclub-reveal-delay, 0ms);
+}
+
+.horseclub-motion .horseclub-reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+/* ==========================================================================
+   Reduced motion: no movement anywhere, content shown at once.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.horseclub-motion .horseclub-reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.horseclub-slider {
+		scroll-behavior: auto;
+	}
+
+	.wp-block-button.horseclub-play > .wp-block-button__link:hover,
+	.horseclub-form__round:hover {
+		transform: none;
+	}
+
+	.wp-block-gallery.horseclub-gallery > .wp-block-image::after,
+	.is-style-horseclub-card,
+	.is-style-horseclub-price {
+		transition: none;
+	}
+}

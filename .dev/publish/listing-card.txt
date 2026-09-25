@@ -1,0 +1,8 @@
+Picker line (the "what are you building" list on /wp/themes/):
+A riding school or equestrian club
+
+Card blurb:
+A riding school and equestrian club theme with lesson booking built in, training courses, events and membership plans, and eight colour palettes.
+
+Card image: horseclub-free-equestrian-wordpress-theme.jpg (1200x800)
+Card image alt: Horseclub WordPress theme home page, a rider leading her dark bay horse past the stable doors, beside the headline and a Book a lesson button
